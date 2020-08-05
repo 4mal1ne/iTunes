@@ -57,10 +57,28 @@ export const videoPlayerInit = () => {
     videoTimeTotal.textContent = `${addZero(minuteTotal)}:${addZero(secondsTotal)}`;
   });
 
-  videoProgress.addEventListener('change', () => {
+  videoProgress.addEventListener('input', () => {
     const duration = videoPlayer.duration;
     const value = videoProgress.value;
 
     videoPlayer.currentTime = (value * duration) / 100;
   });
+
+  // videoFullScreen.addEventListener('click', () => {
+  //   videoPlayer.requestFullscreen();
+  // });
+
+  // videoVolume.addEventListener('input', () => {
+  //   videoPlayer.volume = videoVolume.value / 100;
+  // });
+
+  // videoPlayer.volume = 0.5;
+
+  // videoVolume.value = videoPlayer.volume * 100;
+
+  videoPlayerInit.stop = () => {
+    if (!videoPlayer.paused) {
+      stopPlay();
+    }
+  };
 }
